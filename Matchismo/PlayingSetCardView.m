@@ -114,9 +114,6 @@
 }
 
 - (void)drawSymbol {
-   
-   
-    
     NSAttributedString *symbolText = [[NSAttributedString alloc] initWithString: [self diplayText] attributes: [self cardAtribute]];
     
     CGRect textBounds = CGRectInset(self.bounds, 0, (self.bounds.size.height - symbolText.size.height) / 2);

@@ -465,6 +465,7 @@
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="RVh-j6-mXx" appends="YES" id="sbs-xu-Hui"/>
+                                    <outletCollection property="gestureRecognizers" destination="pn3-yR-Pq5" appends="YES" id="HdB-qM-3Ua"/>
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1tZ-El-QKt" customClass="PlayingSetCardView">
@@ -474,6 +475,7 @@
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="p9t-fr-etS" appends="YES" id="Skg-2O-D8W"/>
+                                    <outletCollection property="gestureRecognizers" destination="74o-ZE-nFI" appends="YES" id="z0q-bT-NbG"/>
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dus-Kj-wv0" customClass="PlayingSetCardView">
@@ -483,6 +485,7 @@
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="DZu-jf-DTa" appends="YES" id="Jf8-do-Hc3"/>
+                                    <outletCollection property="gestureRecognizers" destination="6dd-y4-ojE" appends="YES" id="1uj-dS-wBy"/>
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rph-Rk-WnA" customClass="PlayingSetCardView">
@@ -492,6 +495,7 @@
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="Buo-BS-Zor" appends="YES" id="Kf9-UO-Qts"/>
+                                    <outletCollection property="gestureRecognizers" destination="arq-Jc-EeR" appends="YES" id="0yC-1K-Fxe"/>
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AA4-MV-erF" customClass="PlayingSetCardView">
@@ -501,6 +505,7 @@
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="Pjk-13-Xjj" appends="YES" id="emP-Xf-ef9"/>
+                                    <outletCollection property="gestureRecognizers" destination="ZF5-hL-S2x" appends="YES" id="MXg-xg-S2Y"/>
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MG3-kC-TLj" customClass="PlayingSetCardView">
@@ -510,6 +515,7 @@
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="Auo-IX-78G" appends="YES" id="Lkx-o1-s7Z"/>
+                                    <outletCollection property="gestureRecognizers" destination="lCA-Pm-Kaf" appends="YES" id="MGz-mk-aab"/>
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9LE-co-SZg" customClass="PlayingSetCardView">
@@ -519,6 +525,7 @@
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="xI0-lD-xeN" appends="YES" id="AQo-21-S0I"/>
+                                    <outletCollection property="gestureRecognizers" destination="kJA-4M-rUb" appends="YES" id="ZrR-ou-hh1"/>
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7BX-Bz-jkJ" customClass="PlayingSetCardView">
@@ -528,6 +535,7 @@
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="NN5-iZ-jkG" appends="YES" id="8h5-pd-9ux"/>
+                                    <outletCollection property="gestureRecognizers" destination="gjk-vK-8Pi" appends="YES" id="PSb-eF-zWT"/>
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xJ8-vN-5fY" customClass="PlayingSetCardView">
@@ -537,6 +545,7 @@
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="8gz-EN-00M" appends="YES" id="XVr-IY-yAv"/>
+                                    <outletCollection property="gestureRecognizers" destination="LUT-1d-xHR" appends="YES" id="k3B-GD-OOq"/>
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E6R-GW-iwd" customClass="PlayingSetCardView">
@@ -546,6 +555,7 @@
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="erd-jy-WPL" appends="YES" id="c5H-xA-Fh5"/>
+                                    <outletCollection property="gestureRecognizers" destination="j52-Au-ONX" appends="YES" id="9hY-HV-89w"/>
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ngg-hr-hrF" customClass="PlayingSetCardView">
@@ -555,6 +565,7 @@
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="OuX-V0-oj3" appends="YES" id="7Gg-CY-5dT"/>
+                                    <outletCollection property="gestureRecognizers" destination="9yg-Ac-WdT" appends="YES" id="gct-d2-UgO"/>
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9NE-P6-ooF" customClass="PlayingSetCardView">
@@ -564,13 +575,33 @@
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="ZI0-F5-uF8" appends="YES" id="9yf-oh-CkV"/>
+                                    <outletCollection property="gestureRecognizers" destination="3F8-NW-7sp" appends="YES" id="mtw-db-vCu"/>
                                 </connections>
                             </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score : 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jHR-0M-oeN">
+                                <rect key="frame" x="20" y="426" width="190" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
-                        <outlet property="playingSetView" destination="gBE-1k-bOg" id="r0w-Pp-jrz"/>
+                        <outlet property="scoreLabel" destination="jHR-0M-oeN" id="xcB-WX-eCz"/>
+                        <outletCollection property="playingSetCardView" destination="gBE-1k-bOg" id="h2E-zw-xbq"/>
+                        <outletCollection property="playingSetCardView" destination="1tZ-El-QKt" id="SnD-3n-ddJ"/>
+                        <outletCollection property="playingSetCardView" destination="dus-Kj-wv0" id="XSC-Be-giz"/>
+                        <outletCollection property="playingSetCardView" destination="rph-Rk-WnA" id="TvD-HV-nTX"/>
+                        <outletCollection property="playingSetCardView" destination="AA4-MV-erF" id="Yox-Bn-T2E"/>
+                        <outletCollection property="playingSetCardView" destination="MG3-kC-TLj" id="zdb-4z-qnu"/>
+                        <outletCollection property="playingSetCardView" destination="9LE-co-SZg" id="dFy-iZ-wOV"/>
+                        <outletCollection property="playingSetCardView" destination="7BX-Bz-jkJ" id="Rhp-y8-sf3"/>
+                        <outletCollection property="playingSetCardView" destination="xJ8-vN-5fY" id="RVp-U4-iqa"/>
+                        <outletCollection property="playingSetCardView" destination="E6R-GW-iwd" id="GqL-q3-e3L"/>
+                        <outletCollection property="playingSetCardView" destination="Ngg-hr-hrF" id="Miz-8K-Rtv"/>
+                        <outletCollection property="playingSetCardView" destination="9NE-P6-ooF" id="Rvk-V1-LMS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eye-23-Pwo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -634,6 +665,66 @@
                         <action selector="swipe:" destination="sbE-3W-yGt" id="U37-GG-CGj"/>
                     </connections>
                 </swipeGestureRecognizer>
+                <tapGestureRecognizer id="pn3-yR-Pq5">
+                    <connections>
+                        <action selector="tap:" destination="sbE-3W-yGt" id="Ng8-rs-3qk"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="74o-ZE-nFI">
+                    <connections>
+                        <action selector="tap:" destination="sbE-3W-yGt" id="aEQ-OA-AwX"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="6dd-y4-ojE">
+                    <connections>
+                        <action selector="tap:" destination="sbE-3W-yGt" id="ucT-Zh-FJw"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="arq-Jc-EeR">
+                    <connections>
+                        <action selector="tap:" destination="sbE-3W-yGt" id="TpW-dx-Lpi"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="ZF5-hL-S2x">
+                    <connections>
+                        <action selector="tap:" destination="sbE-3W-yGt" id="r8L-Eh-k7B"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="lCA-Pm-Kaf">
+                    <connections>
+                        <action selector="tap:" destination="sbE-3W-yGt" id="UEg-ju-k2w"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="kJA-4M-rUb">
+                    <connections>
+                        <action selector="tap:" destination="sbE-3W-yGt" id="KJu-U7-LM8"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="gjk-vK-8Pi">
+                    <connections>
+                        <action selector="tap:" destination="sbE-3W-yGt" id="C92-ed-9fA"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="LUT-1d-xHR">
+                    <connections>
+                        <action selector="tap:" destination="sbE-3W-yGt" id="nUe-zb-WSA"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="j52-Au-ONX">
+                    <connections>
+                        <action selector="tap:" destination="sbE-3W-yGt" id="BAY-SA-Y3P"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="9yg-Ac-WdT">
+                    <connections>
+                        <action selector="tap:" destination="sbE-3W-yGt" id="mmv-Yy-nlg"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="3F8-NW-7sp">
+                    <connections>
+                        <action selector="tap:" destination="sbE-3W-yGt" id="8R5-x4-obL"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-112" y="-43"/>
         </scene>

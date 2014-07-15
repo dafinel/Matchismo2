@@ -10,10 +10,14 @@
 #import "PlayingSetCardView.h"
 #import "SetCardDeck.h"
 #import "SetCard.h"
+#import "CardMatchingGame.h"
 
 @interface SetViewController ()
-@property (strong, nonatomic) Deck *deck;
-@property (weak, nonatomic) IBOutlet PlayingSetCardView *playingSetView;
+@property (nonatomic, strong) Deck *deck;
+@property (nonatomic, strong) CardMatchingGame *game;
+
+@property (strong, nonatomic) IBOutletCollection(PlayingSetCardView) NSArray *playingSetCardView;
+@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @end
 
 @implementation SetViewController
@@ -24,24 +28,70 @@
     return _deck;
 }
 
-- (void)drawRandomPlayingCard
-{
+- (Deck *)createDeak {
+    return [[SetCardDeck alloc] init];
+}
+
+- (CardMatchingGame *)game {
+    if (!_game) {
+        _game = [[CardMatchingGame alloc] initWithCardCount:[self.playingSetCardView count]
+                                                  usingDeck:[self createDeak]];
+    }
+    return _game;
+}
+
+
+- (void)drawRandomPlayingCard:(NSUInteger) indexOfCard {
     Card *card = [self.deck drowRandomCard];
     if ([card isKindOfClass:[SetCard class]]) {
         SetCard *setCard = (SetCard *)card;
-        self.playingSetView.rank = setCard.rank;
-        self.playingSetView.symbol = setCard.symbol;
+        PlayingSetCardView *playingSetView = [self.playingSetCardView objectAtIndex:indexOfCard];
+        playingSetView.rank = setCard.rank;
+        playingSetView.symbol = setCard.symbol;
     }
 }
 - (IBAction)swipe:(UISwipeGestureRecognizer *)sender {
-    if (!self.playingSetView.faceUp) [self drawRandomPlayingCard];
-    self.playingSetView.faceUp = !self.playingSetView.faceUp;
+    int indexOfCard = [ self.playingSetCardView indexOfObject:[sender view]];
+    PlayingSetCardView *playingSetView = [self.playingSetCardView objectAtIndex:indexOfCard];
+    if (!playingSetView.faceUp) {
+        [self drawRandomPlayingCard:indexOfCard];
+    }
+    playingSetView.faceUp = !playingSetView.faceUp;
+    
+}
+
+- (IBAction)tap:(UITapGestureRecognizer *)sender {
+    int indexOfCard = [ self.playingSetCardView indexOfObject:[sender view]];
+    [self.game chooseCardAtIndex:indexOfCard];
+    self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d",self.game.score];
+    [self updateUI];
+
+
+}
+
+- (void)updateUI {
+    for (PlayingSetCardView *playingSetView in self.playingSetCardView){
+        int cardIndex = [self.playingSetCardView indexOfObject:playingSetView];
+        Card *card = [self.game cardAtIndex:cardIndex];
+        if (card.isMatched) {
+            playingSetView.alpha = 0.0;
+            playingSetView.faceUp = NO;
+        }
+    }
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.game.numberOfCards = 3;
+    for (PlayingSetCardView *playingSetView in self.playingSetCardView){
+        int indexOfCard = [ self.playingSetCardView indexOfObject:playingSetView];
+        if (!playingSetView.faceUp) {
+            [self drawRandomPlayingCard:indexOfCard];
+        }
+        playingSetView.faceUp = !playingSetView.faceUp;
+        }
 }
 
 
