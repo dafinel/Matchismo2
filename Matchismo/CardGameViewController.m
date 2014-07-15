@@ -51,16 +51,6 @@ static const int kSegmentedControlID = 100;
 
 #pragma mark - IBActions
 
-- (IBAction)selectionAction:(UISegmentedControl *)sender {
-    if (sender.selectedSegmentIndex == 0) {
-        [self setNumberOfCardsForGame:2];
-    } else{
-        [self setNumberOfCardsForGame:3];
-    }
-    
-}
-
-
 - (IBAction)slideAction:(UISlider *)sender {
     int slideValue = sender.value;
     self.stringLabel.text = [self.flipsHistory objectAtIndex:slideValue];
