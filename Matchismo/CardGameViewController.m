@@ -99,11 +99,6 @@ static const int kSegmentedControlID = 100;
     for(UIButton *cardButton in self.cardButtons){
         int cardButtonIndex = [self.cardButtons indexOfObject:cardButton];
         Card *card = [self.game cardAtIndex:cardButtonIndex];
-        
-      //  if (card.isChosen) {
-        
-        //}
-        
         [cardButton setTitle:[self titleForCard:card] forState:UIControlStateNormal];
         [cardButton setBackgroundImage:[self backGroundImageForCard:card] forState:UIControlStateNormal];
         cardButton.enabled =! card.isMatched;

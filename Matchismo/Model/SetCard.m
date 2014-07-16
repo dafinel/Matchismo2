@@ -15,7 +15,7 @@
 }
 
 + (NSArray *)validShadings {
-    return @[@"solid", @"striped", @"open"];
+    return @[@"open", @"striped", @"solid" ];
 }
 
 + (NSArray *)validColors {

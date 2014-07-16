@@ -29,13 +29,14 @@
 }
 
 - (void)updateUI {
-    NSMutableAttributedString *text= [[NSMutableAttributedString alloc] initWithString:self.textView.text];
+    NSMutableAttributedString *text= [[NSMutableAttributedString alloc] initWithAttributedString:self.textView.textStorage ];
     NSAttributedString *space = [[NSAttributedString alloc] initWithString:@"\n"];
     for (NSAttributedString *string in self.history) {
         [text appendAttributedString: space];
         [text appendAttributedString: string];
     }
-    self.textView.text = [text string];
+    //self.textView.text = [text string];
+    [self.textView.textStorage setAttributedString:text];
     
 }
 

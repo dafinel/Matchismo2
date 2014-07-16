@@ -22,9 +22,12 @@
                         SetCard *card =[[SetCard alloc] init];
                         card.rank = i;
                         UIColor *colorForSymbol = [self setColorForSymbol:color];
+                        UIColor *colorForOutlineSymbol = [self setColorForSymbol:color];
                         colorForSymbol = [colorForSymbol colorWithAlphaComponent:[self setAlphaForSymbol:shading]];
                         card.symbol = [[NSMutableAttributedString alloc] initWithString:symbol
-                                                                             attributes:@{ NSForegroundColorAttributeName : colorForSymbol}];
+                                                                             attributes:@{ NSForegroundColorAttributeName:colorForSymbol,
+                                                                                           NSStrokeColorAttributeName:colorForOutlineSymbol,
+                                                                                           NSStrokeWidthAttributeName: @-2,}];
                          
                         [self addCard:card];
                     }

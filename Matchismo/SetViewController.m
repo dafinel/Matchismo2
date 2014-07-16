@@ -11,6 +11,7 @@
 #import "SetCardDeck.h"
 #import "SetCard.h"
 #import "CardMatchingGame.h"
+#import "HistoryViewController.h"
 
 @interface SetViewController ()
 @property (nonatomic, strong) Deck *deck;
@@ -22,6 +23,8 @@
 @end
 
 @implementation SetViewController
+
+#pragma mark - Proprieties
 
 - (NSMutableArray *)flipsHistory {
     if(!_flipsHistory) {
@@ -47,6 +50,16 @@
     return _game;
 }
 
+#pragma mark - IBActions
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"Show History"]) {
+        if ([segue.destinationViewController isKindOfClass:[HistoryViewController class]]) {
+            HistoryViewController *historyViewController = (HistoryViewController *)segue.destinationViewController;
+            historyViewController.history = self.flipsHistory;
+        }
+    }
+}
 
 - (void)drawRandomPlayingCard:(NSUInteger) indexOfCard {
     Card *card = [self.deck drowRandomCard];
@@ -82,11 +95,10 @@
     int indexOfCard = [ self.playingSetCardView indexOfObject:[sender view]];
     [self.game chooseCardAtIndex:indexOfCard];
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d",self.game.score];
-    self.stringLabel.text = [self.game.rezult string];
-    UIColor *symbolColor = [self.game.rezult attribute:NSForegroundColorAttributeName atIndex:0 effectiveRange:nil];
-    self.stringLabel.textColor = symbolColor;
+    self.stringLabel.attributedText = self.game.rezult;
     [self.flipsHistory addObject:self.game.rezult];
     [self updateUI];
+    
 
 
 }
@@ -101,6 +113,8 @@
         }
     }
 }
+
+#pragma mark - Initialization
 
 - (void)viewDidLoad
 {
