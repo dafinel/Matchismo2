@@ -74,8 +74,8 @@ static const int COST_TO_CHOOSE=1;
 // Too large, should refactor
 -(void)chooseCardAtIndex:(NSUInteger)index {
     Card *card = self.cards[index];
-    self.rezult = [NSString stringWithFormat:@"%@",card.contents];
-    NSString *otherCardsContets = @"";
+    self.rezult = [[NSMutableAttributedString alloc] initWithAttributedString:card.contents];
+    NSMutableAttributedString *otherCardsContets = [[NSMutableAttributedString alloc] init];
     
     if(!card.isMatched){
         if(card.isChosen) {
@@ -97,16 +97,26 @@ static const int COST_TO_CHOOSE=1;
                     
                     for(Card *otherCard in otherCards) {
                         otherCard.matched = YES;
-                        otherCardsContets = [otherCardsContets stringByAppendingString:otherCard.contents];
+                        [otherCardsContets appendAttributedString: otherCard.contents];
                     }
                     card.matched = YES;
-                    self.rezult=[NSString stringWithFormat:@"Matched %@ %@ for score: %d", self.rezult, otherCardsContets, matchScore * MATCH_BONUS];
+                    NSAttributedString *match = [[NSAttributedString alloc] initWithString:@" matched"];
+                    NSAttributedString *points = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@" for %d points",matchScore * MATCH_BONUS]];
+                    [self.rezult appendAttributedString: otherCardsContets];
+                    [self.rezult appendAttributedString: match];
+                    [self.rezult appendAttributedString: points];
+                    
                 } else {
                     self.score -= MISMATCH_PENALITY;
                     for(Card *otherCard in otherCards) {
                         otherCard.chosen = NO;
+                        [otherCardsContets appendAttributedString: otherCard.contents];
                     }
-                    self.rezult = [NSString stringWithFormat:@" %@ %@ don’t match! %d point penalty!", self.rezult, otherCardsContets, MISMATCH_PENALITY];
+                    NSAttributedString *dontMatch = [[NSAttributedString alloc] initWithString:@"  don't match"];
+                    NSAttributedString *penality = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@" penality %d points",MISMATCH_PENALITY]];
+                    [self.rezult appendAttributedString: otherCardsContets];
+                    [self.rezult appendAttributedString: dontMatch];
+                    [self.rezult appendAttributedString: penality];
                 }
             }
             self.score -= COST_TO_CHOOSE;

@@ -11,7 +11,7 @@
 @implementation SetCard
 
 + (NSArray *)validSymbols {
-    return @[@"diamond", @"squiggle", @"oval"];
+    return @[@"▲",@"■",@"●"];
 }
 
 + (NSArray *)validShadings {
@@ -28,7 +28,35 @@
     int numberOfShade = 0;
     int numberOfColor = 0;
     int numberOfNumber = 0;
-    if ([othercards count] == 3) {
+    numberOfSymbol += [[SetCard validSymbols] indexOfObject: [self.symbol string]];
+    numberOfNumber += self.rank;
+    UIColor *thisColor = [self.symbol attribute:NSForegroundColorAttributeName atIndex:0 effectiveRange:nil];
+    CGFloat alpha = 0;
+    [thisColor getHue:nil
+             saturation:nil
+             brightness:nil
+                  alpha:&alpha];
+    if (alpha == 0) {
+        numberOfShade += 1;
+    } else if (alpha == 0.5) {
+        numberOfShade += 2;
+    } else {
+        numberOfShade += 3;
+    }
+    CGFloat red = 0;
+    CGFloat green = 0;
+    CGFloat blue = 0;
+    [thisColor getRed:&red green:&green blue:&blue alpha:nil];
+    if ((red == 0.5) && (blue == 0.5)) {
+        numberOfColor += 3;
+    } else if(green == 1.0) {
+        numberOfColor += 2;
+    } else if (red == 1.0) {
+        numberOfColor += 1;
+    }
+
+    
+    if ([othercards count] == 2) {
         for (SetCard *otherCard in othercards) {
             numberOfSymbol += [[SetCard validSymbols] indexOfObject: [otherCard.symbol string]];
             numberOfNumber += otherCard.rank;
@@ -63,9 +91,15 @@
     return score;
 }
 
-- (NSString *)contents {
-    NSAttributedString *text = [[NSAttributedString alloc] initWithAttributedString: self.symbol];
-    return [text string];
+- (NSAttributedString *)contents {
+    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithAttributedString: self.symbol];
+    if (self.rank == 2) {
+        [text appendAttributedString:self.symbol];
+    } else if (self.rank == 3) {
+         [text appendAttributedString:self.symbol];
+         [text appendAttributedString:self.symbol];
+    }
+    return text;
 }
 
 @end

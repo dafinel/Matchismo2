@@ -12,7 +12,7 @@
 @interface CardMatchingGame : NSObject
 
 @property (nonatomic, readonly) NSInteger score;
-@property (nonatomic, strong  ) NSString *rezult;
+@property (nonatomic, strong  ) NSMutableAttributedString *rezult;
 @property (nonatomic          ) NSUInteger numberOfCards;
 
 - (instancetype)initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck;

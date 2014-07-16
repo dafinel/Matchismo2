@@ -15,15 +15,22 @@
 @interface SetViewController ()
 @property (nonatomic, strong) Deck *deck;
 @property (nonatomic, strong) CardMatchingGame *game;
-
+@property (weak, nonatomic) IBOutlet UILabel *stringLabel;
 @property (strong, nonatomic) IBOutletCollection(PlayingSetCardView) NSArray *playingSetCardView;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (nonatomic, strong) NSMutableArray *flipsHistory;
 @end
 
 @implementation SetViewController
 
-- (Deck *)deck
-{
+- (NSMutableArray *)flipsHistory {
+    if(!_flipsHistory) {
+        _flipsHistory = [[NSMutableArray alloc]init];
+    }
+    return _flipsHistory;
+}
+
+- (Deck *)deck{
     if (!_deck) _deck = [[SetCardDeck alloc] init];
     return _deck;
 }
@@ -59,11 +66,26 @@
     playingSetView.faceUp = !playingSetView.faceUp;
     
 }
+- (IBAction)redealAction:(id)sender {
+    self.game = [[CardMatchingGame alloc] initWithCardCount:[self.playingSetCardView count]
+                                              usingDeck:[self createDeak]];
+    self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d",self.game.score];
+    self.stringLabel.text = @"Play again";
+     [self.flipsHistory removeAllObjects];
+    for (PlayingSetCardView *playingSetView in self.playingSetCardView){
+        playingSetView.faceUp = NO;
+    }
+    [self viewDidLoad];
+}
 
 - (IBAction)tap:(UITapGestureRecognizer *)sender {
     int indexOfCard = [ self.playingSetCardView indexOfObject:[sender view]];
     [self.game chooseCardAtIndex:indexOfCard];
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d",self.game.score];
+    self.stringLabel.text = [self.game.rezult string];
+    UIColor *symbolColor = [self.game.rezult attribute:NSForegroundColorAttributeName atIndex:0 effectiveRange:nil];
+    self.stringLabel.textColor = symbolColor;
+    [self.flipsHistory addObject:self.game.rezult];
     [self updateUI];
 
 

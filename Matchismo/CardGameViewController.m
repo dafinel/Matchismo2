@@ -8,6 +8,7 @@
 
 #import "CardGameViewController.h"
 #import "CardMatchingGame.h"
+#import "HistoryViewController.h"
 
 static const int kSegmentedControlID = 100;
 
@@ -28,16 +29,14 @@ static const int kSegmentedControlID = 100;
 
 #pragma mark - Initialization
 
-- (NSMutableArray *)flipsHistory
-{
+- (NSMutableArray *)flipsHistory {
     if(!_flipsHistory) {
         _flipsHistory = [[NSMutableArray alloc]init];
     }
     return _flipsHistory;
 }
 
-- (CardMatchingGame *)game
-{
+- (CardMatchingGame *)game {
     if(!_game) {
         _game=[[CardMatchingGame alloc]initWithCardCount:[self.cardButtons count]
                                                usingDeck:[self createDeak]];
@@ -51,9 +50,18 @@ static const int kSegmentedControlID = 100;
 
 #pragma mark - IBActions
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"Show History"]) {
+        if ([segue.destinationViewController isKindOfClass:[HistoryViewController class]]) {
+            HistoryViewController *historyViewController = (HistoryViewController *)segue.destinationViewController;
+            historyViewController.history = self.flipsHistory;
+        }
+    }
+}
+
 - (IBAction)slideAction:(UISlider *)sender {
     int slideValue = sender.value;
-    self.stringLabel.text = [self.flipsHistory objectAtIndex:slideValue];
+    self.stringLabel.text = [[self.flipsHistory objectAtIndex:slideValue] string];
 }
 
 - (IBAction)redealAction:(UIButton *)sender {
@@ -80,8 +88,7 @@ static const int kSegmentedControlID = 100;
 }
 
 - (IBAction)touchCardButton:(UIButton *)sender {
-    UISegmentedControl *segControl = (UISegmentedControl*)[self.view viewWithTag:kSegmentedControlID];
-    [segControl setEnabled:NO];
+   
     self.slideHistory.enabled = YES;
     int chooseButtonIndex = [self.cardButtons indexOfObject:sender];
     [self.game chooseCardAtIndex:chooseButtonIndex];
@@ -93,24 +100,26 @@ static const int kSegmentedControlID = 100;
         int cardButtonIndex = [self.cardButtons indexOfObject:cardButton];
         Card *card = [self.game cardAtIndex:cardButtonIndex];
         
-        if (card.isChosen) {
-            [self.flipsHistory addObject:card.contents];
-            self.slideHistory.maximumValue = [self.flipsHistory count]-1;
-            [self.slideHistory setValue:[self.flipsHistory count]-1 animated:NO];
-        }
+      //  if (card.isChosen) {
+        
+        //}
         
         [cardButton setTitle:[self titleForCard:card] forState:UIControlStateNormal];
         [cardButton setBackgroundImage:[self backGroundImageForCard:card] forState:UIControlStateNormal];
         cardButton.enabled =! card.isMatched;
         self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d",self.game.score];
-        self.stringLabel.text = self.game.rezult;
+        self.stringLabel.text = [self.game.rezult string];
+        
     }
+    [self.flipsHistory addObject:self.game.rezult];
+    self.slideHistory.maximumValue = [self.flipsHistory count]-1;
+    [self.slideHistory setValue:[self.flipsHistory count]-1 animated:NO];
 }
 
 #pragma mark - Getters
 
 - (NSString *)titleForCard:(Card *)card {
-    return card.isChosen ? card.contents : @"";
+    return card.isChosen ? [card.contents string]: @"";
 }
 
 - (UIImage *) backGroundImageForCard : (Card *)card {

@@ -14,7 +14,7 @@
 -(instancetype)init{
     self = [super init];
     if (self) {
-        NSDictionary *symbolPallette = @{@"diamond":@"▲",@"squiggle":@"■",@"oval":@"●"};
+       // NSDictionary *symbolPallette = @{@"diamond":@"▲",@"squiggle":@"■",@"oval":@"●"};
         for (NSString *symbol in [[SetCard class] validSymbols]) {
             for (int i=1;i<=3;i++) {
                 for (NSString *color in [[SetCard class] validColors]) {
@@ -23,7 +23,7 @@
                         card.rank = i;
                         UIColor *colorForSymbol = [self setColorForSymbol:color];
                         colorForSymbol = [colorForSymbol colorWithAlphaComponent:[self setAlphaForSymbol:shading]];
-                        card.symbol = [[NSMutableAttributedString alloc] initWithString:symbolPallette[symbol]
+                        card.symbol = [[NSMutableAttributedString alloc] initWithString:symbol
                                                                              attributes:@{ NSForegroundColorAttributeName : colorForSymbol}];
                          
                         [self addCard:card];
