@@ -10,4 +10,6 @@
 
 @interface SetViewController : UIViewController
 
+@property (strong, nonatomic) NSString *gameType;
+
 @end

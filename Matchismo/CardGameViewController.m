@@ -9,6 +9,7 @@
 #import "CardGameViewController.h"
 #import "CardMatchingGame.h"
 #import "HistoryViewController.h"
+#import "GameResult.h"
 
 static const int kSegmentedControlID = 100;
 
@@ -22,12 +23,19 @@ static const int kSegmentedControlID = 100;
 @property (nonatomic, weak  ) IBOutlet UILabel *stringLabel;
 @property (nonatomic, strong) NSMutableArray *flipsHistory;
 @property (nonatomic, weak  ) IBOutlet UISlider *slideHistory;
+@property (strong, nonatomic) GameResult *gameResult;
 
 @end
 
 @implementation CardGameViewController
 
 #pragma mark - Initialization
+
+- (GameResult *)gameResult{
+    if (!_gameResult) _gameResult = [[GameResult alloc] init];
+    _gameResult.gameType = self.gameType;
+    return _gameResult;
+}
 
 - (NSMutableArray *)flipsHistory {
     if(!_flipsHistory) {
@@ -85,6 +93,7 @@ static const int kSegmentedControlID = 100;
     self.slideHistory.maximumValue = 1;
     [self.slideHistory setValue:0];
     self.slideHistory.enabled = NO;
+    self.gameResult = nil;
 }
 
 - (IBAction)touchCardButton:(UIButton *)sender {
@@ -103,6 +112,7 @@ static const int kSegmentedControlID = 100;
         [cardButton setBackgroundImage:[self backGroundImageForCard:card] forState:UIControlStateNormal];
         cardButton.enabled =! card.isMatched;
         self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d",self.game.score];
+        self.gameResult.score = self.game.score;
         self.stringLabel.text = [self.game.rezult string];
         
     }

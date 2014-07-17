@@ -16,6 +16,7 @@
 @property (nonatomic          ) NSUInteger numberOfCards;
 
 - (instancetype)initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck;
+- (void)setCardsForSet:(NSMutableArray *)cards;
 - (void)chooseCardAtIndex:(NSUInteger)index;
 - (Card *)cardAtIndex:(NSUInteger)index;
 - (void)setNewScore:(NSInteger)newScore;

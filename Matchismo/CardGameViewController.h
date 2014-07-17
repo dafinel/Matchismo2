@@ -11,6 +11,8 @@
 
 @interface CardGameViewController : UIViewController
 
+@property (strong, nonatomic) NSString *gameType;
+
 - (Deck *)createDeak;
 - (void)setNumberOfCardsForGame:(NSUInteger)nr;
 @end

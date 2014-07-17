@@ -19,6 +19,7 @@
 #pragma mark - initialization
 
 - (Deck *)createDeak{
+    self.gameType = @"CardsGame";
     return [[PlayingCardDeck alloc] init];
 }
 

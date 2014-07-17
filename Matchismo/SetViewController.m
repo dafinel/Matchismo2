@@ -12,19 +12,28 @@
 #import "SetCard.h"
 #import "CardMatchingGame.h"
 #import "HistoryViewController.h"
+#import "GameResult.h"
 
 @interface SetViewController ()
 @property (nonatomic, strong) Deck *deck;
+@property (nonatomic, strong) NSMutableArray *cards;
 @property (nonatomic, strong) CardMatchingGame *game;
-@property (weak, nonatomic) IBOutlet UILabel *stringLabel;
-@property (strong, nonatomic) IBOutletCollection(PlayingSetCardView) NSArray *playingSetCardView;
-@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (nonatomic, weak  ) IBOutlet UILabel *stringLabel;
+@property (nonatomic, strong) IBOutletCollection(PlayingSetCardView) NSArray *playingSetCardView;
+@property (nonatomic, weak  ) IBOutlet UILabel *scoreLabel;
 @property (nonatomic, strong) NSMutableArray *flipsHistory;
+@property (strong, nonatomic) GameResult *gameResult;
 @end
 
 @implementation SetViewController
 
 #pragma mark - Proprieties
+
+- (GameResult *)gameResult{
+    if (!_gameResult) _gameResult = [[GameResult alloc] init];
+    _gameResult.gameType = self.gameType;
+    return _gameResult;
+}
 
 - (NSMutableArray *)flipsHistory {
     if(!_flipsHistory) {
@@ -33,12 +42,18 @@
     return _flipsHistory;
 }
 
+- (NSMutableArray *)cards {
+    if (!_cards) _cards = [[NSMutableArray alloc] init];
+    return _cards;
+}
+
 - (Deck *)deck{
     if (!_deck) _deck = [[SetCardDeck alloc] init];
     return _deck;
 }
 
 - (Deck *)createDeak {
+     self.gameType = @"SetCards";
     return [[SetCardDeck alloc] init];
 }
 
@@ -46,6 +61,7 @@
     if (!_game) {
         _game = [[CardMatchingGame alloc] initWithCardCount:[self.playingSetCardView count]
                                                   usingDeck:[self createDeak]];
+        [_game setCardsForSet:self.cards];
     }
     return _game;
 }
@@ -66,6 +82,8 @@
     if ([card isKindOfClass:[SetCard class]]) {
         SetCard *setCard = (SetCard *)card;
         PlayingSetCardView *playingSetView = [self.playingSetCardView objectAtIndex:indexOfCard];
+        [self.cards setObject:setCard atIndexedSubscript:indexOfCard];
+        [self.game setCardsForSet:self.cards];
         playingSetView.rank = setCard.rank;
         playingSetView.symbol = setCard.symbol;
     }
@@ -88,13 +106,14 @@
     for (PlayingSetCardView *playingSetView in self.playingSetCardView){
         playingSetView.faceUp = NO;
     }
-    [self viewDidLoad];
+    [self setInitialCards];
 }
 
 - (IBAction)tap:(UITapGestureRecognizer *)sender {
     int indexOfCard = [ self.playingSetCardView indexOfObject:[sender view]];
     [self.game chooseCardAtIndex:indexOfCard];
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d",self.game.score];
+    self.gameResult.score = self.game.score;
     self.stringLabel.attributedText = self.game.rezult;
     [self.flipsHistory addObject:self.game.rezult];
     [self updateUI];
@@ -114,20 +133,26 @@
     }
 }
 
+
+
 #pragma mark - Initialization
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.game.numberOfCards = 3;
+- (void)setInitialCards {
     for (PlayingSetCardView *playingSetView in self.playingSetCardView){
         int indexOfCard = [ self.playingSetCardView indexOfObject:playingSetView];
         if (!playingSetView.faceUp) {
             [self drawRandomPlayingCard:indexOfCard];
         }
         playingSetView.faceUp = !playingSetView.faceUp;
-        }
+    }
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    self.game.numberOfCards = 3;
+    [self setInitialCards];
 }
 
 

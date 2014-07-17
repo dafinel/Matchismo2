@@ -30,21 +30,25 @@
     self.score = 0;
 }
 
--(void)unchooseCards {
+- (void)unchooseCards {
     for(Card *otherCard in self.cards) {
         otherCard.matched = NO;
         otherCard.chosen = NO;
     }
 }
 
--(NSMutableArray *)cards {
+- (NSMutableArray *)cards {
     if(!_cards){
         _cards = [[NSMutableArray alloc]init];
     }
     return _cards;
 }
 
--(instancetype)initWithCardCount:(NSUInteger)count
+- (void)setCardsForSet:(NSMutableArray *)cards {
+    self.cards=cards;
+}
+
+- (instancetype)initWithCardCount:(NSUInteger)count
                        usingDeck:(Deck *)deck
 {
     self = [super init];
@@ -63,7 +67,7 @@
     return self;
 }
 
--(Card *)cardAtIndex:(NSUInteger)index {
+- (Card *)cardAtIndex:(NSUInteger)index {
     return index < [self.cards count] ? self.cards[index] : nil;
 }
 
@@ -72,7 +76,7 @@ static const int MATCH_BONUS=4;
 static const int COST_TO_CHOOSE=1;
 
 // Too large, should refactor
--(void)chooseCardAtIndex:(NSUInteger)index {
+- (void)chooseCardAtIndex:(NSUInteger)index {
     Card *card = self.cards[index];
     self.rezult = [[NSMutableAttributedString alloc] initWithAttributedString:card.contents];
     NSMutableAttributedString *otherCardsContets = [[NSMutableAttributedString alloc] init];
