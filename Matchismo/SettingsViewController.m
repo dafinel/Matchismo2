@@ -10,6 +10,9 @@
 #import "GameSettings.h"
 
 @interface SettingsViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *matchBonusLabel;
+@property (weak, nonatomic) IBOutlet UILabel *mismatchPenalityLabel;
+@property (weak, nonatomic) IBOutlet UILabel *costToChooselabel;
 @property (nonatomic, weak  ) IBOutlet UISlider *mathBonusSlider;
 @property (nonatomic, weak  ) IBOutlet UISlider *mismathPenalitySlider;
 @property (nonatomic, weak  ) IBOutlet UISlider *costToChooseSlider;
@@ -22,14 +25,17 @@
 
 - (IBAction)mathBonusSliderAction:(UISlider *)sender {
     self.gameSettings.mathBonus = (int)sender.value;
+    self.matchBonusLabel.text = [NSString stringWithFormat:@"%d",self.gameSettings.mathBonus];
 }
 
 - (IBAction)mismathPenalitySliderAction:(UISlider *)sender {
     self.gameSettings.mathPenality = (int)sender.value;
+    self.mismatchPenalityLabel.text = [NSString stringWithFormat:@"%d",self.gameSettings.mathPenality];
 }
 
 - (IBAction)costToChoseSliderAction:(UISlider *)sender {
     self.gameSettings.flipCost = (int)sender.value;
+    self.costToChooselabel.text = [NSString stringWithFormat:@"%d",self.gameSettings.flipCost];
 }
 
 #pragma mark - Initialization
@@ -45,6 +51,10 @@
     self.mathBonusSlider.value = self.gameSettings.mathBonus;
     self.mismathPenalitySlider.value = self.gameSettings.mathPenality;
     self.costToChooseSlider.value = self.gameSettings.flipCost;
+    self.matchBonusLabel.text = [NSString stringWithFormat:@"%d",self.gameSettings.mathBonus];
+    self.mismatchPenalityLabel.text = [NSString stringWithFormat:@"%d",self.gameSettings.mathPenality];
+    self.costToChooselabel.text = [NSString stringWithFormat:@"%d",self.gameSettings.flipCost];
+
     
 }
 
