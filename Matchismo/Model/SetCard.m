@@ -28,7 +28,7 @@
     int numberOfShade = 0;
     int numberOfColor = 0;
     int numberOfNumber = 0;
-    numberOfSymbol += [[SetCard validSymbols] indexOfObject: [self.symbol string]];
+    numberOfSymbol += [[SetCard validSymbols] indexOfObject: [self.symbol string]]+1;
     numberOfNumber += self.rank;
     UIColor *thisColor = [self.symbol attribute:NSForegroundColorAttributeName atIndex:0 effectiveRange:nil];
     CGFloat alpha = 0;
@@ -58,7 +58,7 @@
     
     if ([othercards count] == 2) {
         for (SetCard *otherCard in othercards) {
-            numberOfSymbol += [[SetCard validSymbols] indexOfObject: [otherCard.symbol string]];
+            numberOfSymbol += [[SetCard validSymbols] indexOfObject: [otherCard.symbol string]]+1;
             numberOfNumber += otherCard.rank;
             
             

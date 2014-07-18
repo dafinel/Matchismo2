@@ -107,6 +107,7 @@
 - (IBAction)redealAction:(id)sender {
     self.game = [[CardMatchingGame alloc] initWithCardCount:[self.playingSetCardView count]
                                               usingDeck:[self createDeak]];
+    [self.game setNumberOfCards:3];
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d",self.game.score];
     self.stringLabel.text = @"Play again";
      [self.flipsHistory removeAllObjects];
@@ -134,8 +135,8 @@
         int cardIndex = [self.playingSetCardView indexOfObject:playingSetView];
         Card *card = [self.game cardAtIndex:cardIndex];
         if (card.isMatched) {
-            playingSetView.alpha = 0.0;
-            playingSetView.faceUp = NO;
+           [self drawRandomPlayingCard:cardIndex];
+          //  playingSetView.faceUp = NO;
         }
     }
 }
