@@ -63,8 +63,7 @@
     [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"ro_RO"];
     [dateFormatter setLocale:usLocale];
-    NSString *text = [NSString stringWithFormat:@"%@: %d, (%@, %f)\n",game.gameType,game.score,[dateFormatter stringFromDate:game.end],round([game duration])];
-    
+    NSString *text = [NSString stringWithFormat:@"%@: %d, (%@, %.0f)\n",game.gameType,game.score,[dateFormatter stringFromDate:game.end],game.duration];
     return text;
 }
 

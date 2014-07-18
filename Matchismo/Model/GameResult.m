@@ -49,6 +49,7 @@
 
 - (NSTimeInterval)duration {
     return [self.end timeIntervalSinceDate:self.start];
+   
 }
 
 + (NSArray *)allscores {

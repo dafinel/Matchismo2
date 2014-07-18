@@ -13,6 +13,7 @@
 #import "CardMatchingGame.h"
 #import "HistoryViewController.h"
 #import "GameResult.h"
+#import "GameSettings.h"
 
 @interface SetViewController ()
 @property (nonatomic, strong) Deck *deck;
@@ -23,11 +24,17 @@
 @property (nonatomic, weak  ) IBOutlet UILabel *scoreLabel;
 @property (nonatomic, strong) NSMutableArray *flipsHistory;
 @property (strong, nonatomic) GameResult *gameResult;
+@property (nonatomic, strong) GameSettings *gameSettings;
 @end
 
 @implementation SetViewController
 
 #pragma mark - Proprieties
+
+- (GameSettings *)gameSettings {
+    if (!_gameSettings) _gameSettings = [[GameSettings alloc] init];
+    return _gameSettings;
+}
 
 - (GameResult *)gameResult{
     if (!_gameResult) _gameResult = [[GameResult alloc] init];
@@ -153,6 +160,13 @@
     // Do any additional setup after loading the view.
     self.game.numberOfCards = 3;
     [self setInitialCards];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.game.MATCH_BONUS = self.gameSettings.mathBonus;
+    self.game.MISMATCH_PENALITY = self.gameSettings.mathPenality;
+    self.game.COST_TO_CHOOSE = self.gameSettings.flipCost;
 }
 
 

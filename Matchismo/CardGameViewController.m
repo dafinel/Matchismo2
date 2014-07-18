@@ -10,6 +10,7 @@
 #import "CardMatchingGame.h"
 #import "HistoryViewController.h"
 #import "GameResult.h"
+#import "GameSettings.h"
 
 static const int kSegmentedControlID = 100;
 
@@ -23,7 +24,8 @@ static const int kSegmentedControlID = 100;
 @property (nonatomic, weak  ) IBOutlet UILabel *stringLabel;
 @property (nonatomic, strong) NSMutableArray *flipsHistory;
 @property (nonatomic, weak  ) IBOutlet UISlider *slideHistory;
-@property (strong, nonatomic) GameResult *gameResult;
+@property (nonatomic, strong) GameResult *gameResult;
+@property (nonatomic, strong) GameSettings *gameSettings;
 
 @end
 
@@ -31,7 +33,21 @@ static const int kSegmentedControlID = 100;
 
 #pragma mark - Initialization
 
-- (GameResult *)gameResult{
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.game.MATCH_BONUS = self.gameSettings.mathBonus;
+    self.game.MISMATCH_PENALITY = self.gameSettings.mathPenality;
+    self.game.COST_TO_CHOOSE = self.gameSettings.flipCost;
+}
+
+#pragma mark - Proprieties
+
+- (GameSettings *)gameSettings {
+    if (!_gameSettings) _gameSettings = [[GameSettings alloc] init];
+    return _gameSettings;
+}
+
+- (GameResult *)gameResult {
     if (!_gameResult) _gameResult = [[GameResult alloc] init];
     _gameResult.gameType = self.gameType;
     return _gameResult;
@@ -48,7 +64,11 @@ static const int kSegmentedControlID = 100;
     if(!_game) {
         _game=[[CardMatchingGame alloc]initWithCardCount:[self.cardButtons count]
                                                usingDeck:[self createDeak]];
+        _game.MATCH_BONUS = self.gameSettings.mathBonus;
+        _game.MISMATCH_PENALITY = self.gameSettings.mathPenality;
+        _game.COST_TO_CHOOSE = self.gameSettings.flipCost;
     }
+    
     return _game;
 }
 - (Deck *)createDeak{
