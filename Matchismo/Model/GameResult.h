@@ -10,11 +10,11 @@
 
 @interface GameResult : NSObject\
 
-@property (nonatomic ,strong) NSString *gameType;
-@property (nonatomic) int score;
-@property (nonatomic) NSDate *start;
-@property (nonatomic) NSDate *end;
-@property (nonatomic) NSTimeInterval duration;
+@property (nonatomic, strong) NSString *gameType;
+@property (nonatomic        ) int score;
+@property (nonatomic, strong) NSDate *start;
+@property (nonatomic, strong) NSDate *end;
+@property (nonatomic        ) NSTimeInterval duration;
 
 + (NSArray *)allscores;
 

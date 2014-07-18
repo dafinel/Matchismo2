@@ -49,7 +49,6 @@
 
 - (NSTimeInterval)duration {
     return [self.end timeIntervalSinceDate:self.start];
-   
 }
 
 + (NSArray *)allscores {
@@ -78,8 +77,8 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _start = [NSDate date];
-        _end = _start;
+        self.start = [NSDate date];
+        self.end = self.start;
     }
     return self;
 }
@@ -95,9 +94,8 @@
     [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"ro_RO"];
     [dateFormatter setLocale:usLocale];
-
     
-    gameResultsFromUserDefault[[dateFormatter stringFromDate:self.start]] = @{@"statDate": self.start,
+    gameResultsFromUserDefault[[dateFormatter stringFromDate:self.start]] = @{@"startDate": self.start,
                                                  @"endDate": self.end,
                                                  @"score": @(self.score),
                                                  @"gameType": self.gameType};
